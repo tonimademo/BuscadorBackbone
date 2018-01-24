@@ -1,14 +1,16 @@
 /*global Backbone, jQuery, _, ENTER_KEY, ESC_KEY */
-var app = app || {};
-
-(function ($) {
+define([
+    'jquery',
+    'underscore',
+    'backbone'
+], function($, _, Backbone) {
     'use strict';
 
     // Todo Item View
     // --------------
 
     // The DOM element for a todo item...
-    app.EmpresaView = Backbone.View.extend({
+    var EmpresaView = Backbone.View.extend({
         //... is a list tag.
         tagName:  'tr',
 
@@ -42,4 +44,5 @@ var app = app || {};
         //     this.model.destroy();
         // }
     });
-})(jQuery);
+    return EmpresaView;
+});

@@ -1,14 +1,18 @@
 /*global Backbone, jQuery, _, ENTER_KEY */
-var app = app || {};
-
-(function ($) {
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'collections/empresas',
+    'views/empresa-view'
+], function($, _, Backbone, Empresas, EmpresaView) {
     'use strict';
 
     // The Application
     // ---------------
 
     // Our overall **AppView** is the top-level piece of UI.
-    app.AppView = Backbone.View.extend({
+    var AppView = Backbone.View.extend({
 
         // Instead of generating a new element, bind to the existing skeleton of
         // the App already present in the HTML.
@@ -38,21 +42,22 @@ var app = app || {};
         // Add all items in the **Todos** collection at once.
         addAll: function () {
             this.$tbody.html('');
-            app.empresas.each(function (empresa) {
-                var view = new app.EmpresaView({ model: empresa });
+            Empresas.each(function (empresa) {
+                var view = new EmpresaView({ model: empresa });
                 this.$tbody.append(view.render().el);
             }, this);
         },
 
         buscar: function () {
             this.$tbody.html('');
-            app.empresas.each(function (empresa) {
+            Empresas.each(function (empresa) {
                 if (empresa.attributes.nombre === this.$input.val()){
-                    var view = new app.EmpresaView({ model: empresa });
+                    var view = new EmpresaView({ model: empresa });
                     this.$tbody.append(view.render().el);
                 }
             }, this);
         }
-
     });
-})(jQuery);
+    return AppView;
+
+});

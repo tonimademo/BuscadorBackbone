@@ -1,12 +1,14 @@
 /*global Backbone */
-var app = app || {};
-
-(function () {
+define([
+    'underscore',
+    'backbone',
+    'models/empresa'
+], function(_, Backbone, Empresa) {
     'use strict';
 
-    var TodosEmpresas = Backbone.Collection.extend({
+    var Empresas = Backbone.Collection.extend({
         // Reference to this collection's model.
-        model: app.Empresa,
+        model: Empresa,
 
         // Filter down the list of all todo items that are finished.
         empresa_activa: function () {
@@ -48,7 +50,5 @@ var app = app || {};
 
         }
     ];
-    app.empresas = new TodosEmpresas(datosEmp);
-})();
-
-
+    return new Empresas(datosEmp);
+});

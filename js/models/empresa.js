@@ -1,14 +1,15 @@
 /*global Backbone */
-var app = app || {};
-
-(function () {
+define([
+    'underscore',
+    'backbone'
+], function(_, Backbone) {
     'use strict';
 
     // Todo Model
     // ----------
 
     // Our basic **Todo** model has `title`, `order`, and `completed` attributes.
-    app.Empresa = Backbone.Model.extend({
+    var Empresa = Backbone.Model.extend({
         // Default attributes for the todo
         // and ensure that each todo created has `title` and `completed` keys.
         defaults: {
@@ -26,4 +27,6 @@ var app = app || {};
             });
         }
     });
-})();
+
+    return Empresa;
+});
